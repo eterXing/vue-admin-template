@@ -22,16 +22,16 @@ export default new VueRouter({
             meta: {
                 icon: 'el-icon-notebook-1'
             },
-            component: resolve => require(['@/views/Task.vue'], resolve)
-        },
-        {
-            path: 'taskDetails',
-            name: '作业详情',
-            hidden: false,
-            meta: {
-                icon: 'el-icon-notebook-2'
-            },
-            component: resolve => require(['@/views/TaskDetails.vue'], resolve)
+            component: resolve => require(['@/views/Task.vue'], resolve),
+            children: [{
+                path: 'taskDetails',
+                name: '作业详情',
+                hidden: false,
+                meta: {
+                    icon: 'el-icon-notebook-2'
+                },
+                component: resolve => require(['@/views/TaskDetails.vue'], resolve)
+            }]
         }, {
             path: 'logDetails',
             name: '日志详情',
@@ -40,8 +40,7 @@ export default new VueRouter({
                 icon: 'el-icon-view'
             },
             component: resolve => require(['@/views/LogDetails.vue'], resolve)
-        }
-        ]
+        }]
     }, {
         path: '/login',
         name: 'login',

@@ -1,4 +1,3 @@
-console.log(process.env.NODE_ENV)
 module.exports = {
     publicPath: './', //项目打包跟目录
     assetsDir: 'static', //静态资源放置目录
@@ -27,7 +26,7 @@ module.exports = {
     css: {
         loaderOptions: {
             sass: {
-                data: '@import "@/assets/css/theme/blue.scss";'
+                data: '@import "@/assets/css/theme/theme.scss";'
             }
         }
     },

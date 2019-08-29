@@ -1,7 +1,10 @@
 <template>
   <el-scrollbar wrapClass="scrollbar-wrapper">
-    <div class="logo">
-      <span>Log</span>&nbsp;&nbsp;
+    <div class="logo" v-if='type'>
+      LM
+    </div>
+    <div class="logo" v-else>
+      <span>Log</span>&nbsp;
       <span>Monitoring</span>
     </div>
     <el-menu :default-active='$route.path' router unique-opened menu-trigger='click' :collapse="type" class="el-menu-vertical" background-color="rgb(105, 89, 205)" text-color="#fff">
@@ -46,6 +49,7 @@ export default {
   text-align: center;
   color: #fff;
   background-color: $sideTitle;
+  user-select: none;
   span:last-child {
     color: $color;
   }

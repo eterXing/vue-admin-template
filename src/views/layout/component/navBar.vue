@@ -34,7 +34,8 @@ export default {
         return {
             type: this.value,
             userName: 'admin',
-            breadList: []
+            breadList: [],
+            color: '#ccc'
         }
     },
     methods: {
@@ -70,7 +71,8 @@ export default {
 .navbar {
   width: 100%;
   height: 60px;
-  border-bottom: 2px solid #ccc;
+  background-color: #fff;
+  box-shadow: 0px 2px 2px #ccc;
   .telescopic {
     float: left;
     padding: 0 10px;

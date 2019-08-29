@@ -100,10 +100,16 @@
 .hideSidebar {
     .sidebar-container {
         width: 36px !important;
+        overflow: hidden;
     }
 
     .main-container {
+        overflow: hidden;
         margin-left: 36px;
+    }
+
+    .el-menu-item {
+        padding: 0 18px !important;
     }
 
     .el-menu-item .el-tooltip {
