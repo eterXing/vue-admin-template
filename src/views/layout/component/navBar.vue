@@ -5,8 +5,8 @@
     </div>
     <div class="bread">
       <el-breadcrumb separator-class="el-icon-arrow-right">
-        <el-breadcrumb-item :key="100" :to="{ path: '/index' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item v-for="(item,index) in breadList" v-bind:key="index" :to="{ path: item.path }">{{item.name}}</el-breadcrumb-item>
+        <el-breadcrumb-item v-if="sideList.length && sideList[0].name === 'home'" :key="100" :to="{ path: '/index' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :key="5" v-if="breadList.name !== 'home'" :to="{ path: breadList.path }">{{breadList.name}}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="me">
@@ -33,8 +33,9 @@ export default {
     data() {
         return {
             type: this.value,
-            userName: 'admin',
+            userName: '',
             breadList: [],
+            sideList: [],
             color: '#ccc'
         }
     },
@@ -44,24 +45,25 @@ export default {
                 type: 'warning'
             })
                 .then(() => {
+                    this.$store.dispatch('delUserInfo')
                     this.$router.push('/login')
                 })
                 .catch(() => {})
         }
     },
     mounted() {
-        this.breadList = this.$route.matched.filter(item => {
-            return !['', '/index'].includes(item.path)
-        })
+        let userInfo = this.$store.getters.userInfo
+
+        this.userName = userInfo.userName
+        this.breadList = this.$route
+        this.sideList = this.$store.getters.userRoutes
     },
     watch: {
         type(newVal) {
             this.$emit('input', newVal)
         },
         $route() {
-            this.breadList = this.$route.matched.filter(item => {
-                return !['', '/index'].includes(item.path)
-            })
+            this.breadList = this.$route
         }
     }
 }
@@ -69,15 +71,18 @@ export default {
 
 <style scoped lang="scss">
 .navbar {
+  position: relative;
+  z-index: 100;
   width: 100%;
-  height: 60px;
+  height: 6vh;
+  vertical-align: middle;
   background-color: #fff;
   box-shadow: 0px 2px 2px #ccc;
   .telescopic {
     float: left;
     padding: 0 10px;
-    line-height: 60px;
-    font-size: 24px;
+    line-height: 6vh;
+    font-size: 24rem;
     cursor: pointer;
     > i {
       transition: transform 0.5s;
@@ -91,8 +96,8 @@ export default {
   }
   .bread {
     float: left;
-    line-height: 60px;
-    font-size: 16px;
+    line-height: 6vh;
+    font-size: 20rem;
     > div {
       line-height: inherit;
     }
@@ -103,8 +108,14 @@ export default {
     padding-right: 40px;
     text-align: center;
     height: 100%;
+    .el-avatar {
+      width: 4vh;
+      height: 4vh;
+      line-height: 4vh;
+      font-size: 16rem;
+    }
     > div {
-      line-height: 60px;
+      line-height: 6vh;
       span {
         display: inline-block;
         vertical-align: middle;

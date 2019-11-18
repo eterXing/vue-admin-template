@@ -1,16 +1,78 @@
+// 根据屏幕大小对侧边栏宽度进行处理
+@media screen and (max-width:1200px) {
+    .index {
+        .main-container {
+            margin-left: 160px;
+        }
+    }
+
+    .sidebar-container {
+        width: 160px !important;
+    }
+
+    .el-menu--collapse .el-menu .el-submenu {
+        min-width: 120px !important;
+    }
+
+    .nest-menu .el-submenu .el-submenu__title,
+    .el-menu--vertical .el-menu .el-menu-item,
+    .sidebar-container .el-submenu .el-menu-item {
+        min-width: 120px !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .index {
+        .main-container {
+            margin-left: 210px;
+        }
+    }
+
+    .sidebar-container {
+        width: 210px !important;
+    }
+
+    .el-menu--collapse .el-menu .el-submenu {
+        min-width: 180px !important;
+    }
+
+    .nest-menu .el-submenu .el-submenu__title,
+    .el-menu--vertical .el-menu .el-menu-item,
+    .sidebar-container .el-submenu .el-menu-item {
+        min-width: 180px !important;
+    }
+}
+
+
+.subBox {
+    .el-submenu__title {
+        height: 50px;
+        line-height: 50px;
+        background-color: $sideItemBgc !important;
+    } 
+}
+
+
 .index {
+
+    .scrollbar-wrapper {
+        height: calc(100% + 17px);
+
+        .el-scrollbar__view {
+            height: 100%;
+        }
+    }
 
     // 主体区域
     .main-container {
         min-height: 100%;
         transition: margin-left .28s;
-        margin-left: 210px;
     }
 
     // 侧边栏
     .sidebar-container {
+        user-select: none;
         transition: width 0.28s;
-        width: 210px !important;
         height: 100%;
         position: fixed;
         font-size: 0px;
@@ -38,18 +100,19 @@
 
         .el-menu {
             border: none;
-            height: calc(100% - 60px);
+            height: calc(100% - 6vh);
             width: 100% !important;
         }
 
         .el-menu-item i,
         .el-submenu__title i {
             color: inherit;
+            margin-right: 5px;
+            width: 24px;
+            text-align: center;
+            font-size: 18px;
+            vertical-align: middle;
         }
-    }
-
-    .el-menu--collapse .el-menu .el-submenu {
-        min-width: 180px !important;
     }
 
     .el-submenu__title,
@@ -59,16 +122,15 @@
 }
 
 // 子项颜色
-.nest-menu .el-submenu>.el-submenu__title,
+.nest-menu .el-submenu .el-submenu__title,
 .el-menu--vertical .el-menu .el-menu-item,
 .sidebar-container .el-submenu .el-menu-item {
-    min-width: 180px !important;
     background-color: $sideItemBgc !important;
 }
 
 // hover
 .el-submenu .el-menu-item:hover,
-.el-menu-vertical>.el-menu-item:hover,
+.el-menu-vertical .el-menu-item:hover,
 .el-menu--vertical .el-menu .el-menu-item:hover,
 .el-submenu__title:hover {
     background-color: $activeBgc !important;
@@ -77,7 +139,7 @@
 // 获得焦点
 .el-submenu .el-menu-item.is-active,
 .el-menu--vertical .el-menu .el-menu-item.is-active,
-.el-menu-vertical>.el-menu-item.is-active {
+.el-menu-vertical .el-menu-item.is-active {
     position: relative;
     color: $color !important;
     background-color: $activeBgc !important;
@@ -86,7 +148,7 @@
 // 点击
 .el-submenu .el-menu-item.is-active::after,
 .el-menu--vertical .el-menu .el-menu-item.is-active::after,
-.el-menu-vertical>.el-menu-item.is-active::after {
+.el-menu-vertical .el-menu-item.is-active::after {
     content: '';
     display: inline-block;
     position: absolute;

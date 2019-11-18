@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-position="left" label-width="0px" class="login-container">
-      <h3 class="title">lm系统登录</h3>
+      <h3 class="title">登录</h3>
       <el-form-item prop="account">
         <el-input type="text" v-model="ruleForm.account" auto-complete="off" placeholder="请输入账号"></el-input>
       </el-form-item>
@@ -17,9 +17,8 @@
 </template>
 
 <script>
-//import NProgress from 'nprogress'
 export default {
-    data() {
+    data () {
         return {
             logining: false,
             ruleForm: {
@@ -34,8 +33,17 @@ export default {
         }
     },
     methods: {
-        submit() {
-            console.log(1232)
+        submit () {
+            this.$store.dispatch('setUserInfo', {
+                resourceList: [{parentId:1,resourceName:'作业',route: '/task', icon: 'el-icon-s-home'}],
+                userInfo: {
+                    adminId: 6,
+                    jobNumber: 6,
+                    userId: 6,
+                    userName: '温创兴'
+                },
+                accessToken: 'testToken'
+            })
             this.$router.push('/')
         }
     }
@@ -46,7 +54,6 @@ export default {
 .box {
   width: 100vw;
   height: 100vh;
-  //   background: url("../assets/img/logo.gif") no-repeat 250px 50%;
   background-color: $sideBgc;
   position: relative;
 }
