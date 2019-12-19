@@ -42,7 +42,7 @@ export default {
                     ]},
                     {resourceName:'系统设置', route: '/system', icon: 'el-icon-s-home',children: [
                         {resourceName:'资源管理', route: '/system/resourceManagement', icon: '', children: []}
-                    ]},
+                    ]}
                 ],
                 userInfo: {
                     adminId: 6,
