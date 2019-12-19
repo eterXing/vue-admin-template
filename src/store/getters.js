@@ -10,7 +10,9 @@ const getters = {
     // 有无进行鉴权
     isCompare: state => state.user.isCompare,
     // token
-    accessToken: state => state.user.accessToken
+    accessToken: state => state.user.accessToken,
+    // 用户账号密码
+    userAbout: state => state.password.userAbout
 }
 
 export default getters

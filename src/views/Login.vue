@@ -22,8 +22,8 @@ export default {
         return {
             logining: false,
             ruleForm: {
-                account: 'admin',
-                checkPass: '123456'
+                account: '',
+                checkPass: ''
             },
             rules: {
                 account: [{ required: true, message: '请输入账号', trigger: 'blur' }],
@@ -35,7 +35,15 @@ export default {
     methods: {
         submit () {
             this.$store.dispatch('setUserInfo', {
-                resourceList: [{parentId:1,resourceName:'作业',route: '/task', icon: 'el-icon-s-home'}],
+                resourceList: [
+                    {resourceName:'作业', route: '/task', icon: 'el-icon-s-home', children: []},
+                    {resourceName:'作业详情', route: '/detail', icon: 'el-icon-s-home',children: [
+                        {resourceName:'作业详情', route: '/detail/taskDetails', icon: '', children: []}
+                    ]},
+                    {resourceName:'系统设置', route: '/system', icon: 'el-icon-s-home',children: [
+                        {resourceName:'资源管理', route: '/system/resourceManagement', icon: '', children: []}
+                    ]},
+                ],
                 userInfo: {
                     adminId: 6,
                     jobNumber: 6,
@@ -44,7 +52,20 @@ export default {
                 },
                 accessToken: 'testToken'
             })
+            // 判断是否记住密码
+            if (this.checked) {
+                this.$store.dispatch('setUserAbout', this.ruleForm)
+            } else {
+                this.$store.dispatch('delUserAbout')
+            }
             this.$router.push('/')
+        }
+    },
+    mounted () {
+        this.$store.dispatch('getUserAbout')
+        if (Object.keys(this.$store.getters.userAbout).length) {
+            this.checked = true
+            this.ruleForm = this.$store.getters.userAbout
         }
     }
 }

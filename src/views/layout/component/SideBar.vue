@@ -46,6 +46,7 @@ export default {
     mounted () {
     // 获取侧边栏列表
         this.sideList = this.$store.getters.userRoutes
+        console.log(this.sideList)
         // 路由定向
         if (this.$router.history.current.path === '/') {
             this.$router.push(this.sideList[0].children[0].route)

@@ -26,22 +26,6 @@ const constantRouterMap = [{
                 icon: 'el-icon-s-home'
             },
             component: resolve => require(['@/views/Index.vue'], resolve)
-        }, {
-            path: 'task',
-            name: '作业',
-            hidden: false,
-            meta: {
-                icon: 'el-icon-notebook-1'
-            },
-            component: resolve => require(['@/views/Task.vue'], resolve)
-        }, {
-            path: 'logDetails',
-            name: '日志详情',
-            hidden: false,
-            meta: {
-                icon: 'el-icon-view'
-            },
-            component: resolve => require(['@/views/LogDetails.vue'], resolve)
         }]
     }],
 
