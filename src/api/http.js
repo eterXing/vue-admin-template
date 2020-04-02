@@ -51,7 +51,8 @@ axios.interceptors.response.use(
             if (response.config.url.includes('/login')) {
                 Vue.prototype.$alert(
                     response.data.msg ? response.data.msg : response.statusText,
-                    '提示', {
+                    '提示',
+                    {
                         confirmButtonText: '确定',
                         type: 'error'
                     }
@@ -71,11 +72,12 @@ axios.interceptors.response.use(
 )
 
 //   包含所有请求方法的构造函数
-function _Http() {}
+function _Http () { }
 
 // 封装使用
+// 封装使用
 export default (function () {
-    function http(url = allApi) {
+    function http (url = allApi) {
 
         var _httpob = new _Http()
 
@@ -135,13 +137,12 @@ export default (function () {
 
         if (item.apiName) {
             apiName = item.apiName
-            console.log(apiName)
         } else if (item.url) {
             let arr = item.url.split('/')
 
             apiName = arr[arr.length - 1]
         } else {
-            throw new Error('api对象必须要有url', item)
+            console.error('api对象必须要有url', item)
         }
 
         return apiName
