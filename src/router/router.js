@@ -1,3 +1,8 @@
+/*
+ * @Date: 2020-04-02 09:51:35
+ * @LastEditTime: 2020-04-02 10:40:59
+ * @Description: 总路由+路由拦截
+ */
 import VueRouter from 'vue-router'
 import store from '@/store/store.js'
 import Home from '@/views/layout/Index.vue'
@@ -11,23 +16,27 @@ context.keys().forEach(key => {
 })
 
 const constantRouterMap = [{
-        path: '/login',
-        name: 'login',
-        component: resolve => require(['@/views/Login.vue'], resolve)
-    }, {
-        path: '/',
-        name: 'home',
-        component: Home,
-        children: [{
-            path: 'index',
-            name: '首页',
-            hidden: false,
-            meta: {
-                icon: 'el-icon-s-home'
-            },
-            component: resolve => require(['@/views/Index.vue'], resolve)
-        }]
-    }],
+    path: '/login',
+    name: 'login',
+    component: resolve => require(['@/views/Login.vue'], resolve)
+}, {
+    path: '/flowTemplate',
+    name: 'flowTemplate',
+    component: resolve => require(['@/views/flowTemplate/Index.vue'], resolve)
+}, {
+    path: '/',
+    name: 'home',
+    component: Home,
+    children: [{
+        path: 'index',
+        name: '首页',
+        hidden: false,
+        meta: {
+            icon: 'el-icon-s-home'
+        },
+        component: resolve => require(['@/views/Index.vue'], resolve)
+    }]
+}],
 
     router = new VueRouter({
         mode: 'hash',

@@ -67,6 +67,15 @@ export default {
             this.checked = true
             this.ruleForm = this.$store.getters.userAbout
         }
+    },
+    created(){
+        document.onkeydown = () => {
+            var key = window.event.keyCode
+
+            if(key === 13){
+                this.submit()
+            }
+        }
     }
 }
 </script>

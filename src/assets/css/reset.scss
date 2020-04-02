@@ -1,0 +1,29 @@
+// input框左右布局
+.fix-input {
+    display: inline-block;
+    font-size: 14px;
+    span {
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: 5px;
+    }
+
+    .el-input {
+        width: 150px;
+    }
+}
+
+// select框左右布局
+.fix-select {
+    display: inline-block;
+    font-size: 14px;
+    span:first-child {
+        display: inline-block;
+        vertical-align: middle;
+        padding-right: 5px;
+    }
+
+    .el-input {
+        width: 150px;
+    }
+}
